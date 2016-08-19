@@ -1,0 +1,7 @@
+npm scripts:
+
+npm run start / npm start : starts in dev mode --> localhost:8080
+npm run build : generates production build below /build/
+npm run deploy : deploys to github io under <user>.github.io/<project>
+    Before this can work correctly, you should set publicName at webpack.config.js to match
+    your project name on GitHub.
