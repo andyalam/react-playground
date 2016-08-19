@@ -5,3 +5,31 @@ npm run build : generates production build below /build/
 npm run deploy : deploys to github io under <user>.github.io/<project>
     Before this can work correctly, you should set publicName at webpack.config.js to match
     your project name on GitHub.
+
+React components
+  - internal 'state'
+  - can accept 'props'
+  - escape hatches
+    - lifecycle methods
+      - mounting
+        - componentWillMount()
+        - render()
+        - componentDidMount()
+      - mounted
+        - prop change triggers
+          - componentWillReceiveProps()
+        - state change triggered
+          - shouldComponentUpdate()
+          - componentWillUpdate()
+          - render()
+          - componentDidUpdate()
+      - unmounting
+        - componentWillUnmount()
+    - refs
+    - custom properties and methods
+      - displayName
+      - getInitialState()
+      - getDefaultProps()
+      - render()
+      - mixins
+      - statics
