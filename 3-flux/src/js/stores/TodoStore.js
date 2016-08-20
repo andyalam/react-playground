@@ -7,6 +7,11 @@ class TodoStore extends EventEmitter {
     super();
     this.todos = [
       {
+        id: 99999912,
+        text: "zzdsadsadsa",
+        complete: true,
+      },
+      {
         id: 21312312,
         text: "asdsadsadsa",
         complete: true,
@@ -52,6 +57,20 @@ class TodoStore extends EventEmitter {
         // todos from the "simulated" api calls
         // change will occur in 1 s
         this.todos = action.todos;
+        this.emit("change");
+      }
+      case "SORT_TODOS": {
+        this.todos = this.todos.sort(function(a, b) {
+          var textA = a.text.toUpperCase();
+          var textB = b.text.toUpperCase();
+          if (textA < textB) {
+            return -1;
+          }
+          if (textA > textB) {
+            return 1;
+          }
+          return 0;
+        });
         this.emit("change");
       }
     }

@@ -14,6 +14,12 @@ export function deleteTodo(id) {
   });
 }
 
+export function sortTodos() {
+  dispatcher.dispatch({
+    type: "SORT_TODOS"
+  });
+}
+
 
 // Simulating an api call with static data
 // setTimeout is used to simulate some wait time
