@@ -47,6 +47,13 @@ class TodoStore extends EventEmitter {
       case "CREATE_TODO": {
         this.createTodo(action.text);
       }
+      case "RECEIVE_TODOS": {
+        // override todos completely with the
+        // todos from the "simulated" api calls
+        // change will occur in 1 s
+        this.todos = action.todos;
+        this.emit("change");
+      }
     }
   }
 

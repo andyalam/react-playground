@@ -34,6 +34,10 @@ export default class Featured extends React.Component {
     }
   }
 
+  reloadTodos() {
+    TodoActions.reloadTodos();
+  }
+
   render() {
     const { todos } = this.state;
 
@@ -43,6 +47,7 @@ export default class Featured extends React.Component {
 
     return (
       <div>
+        <button onClick={this.reloadTodos.bind(this)}>Reload</button>
         <button onClick={this.createTodo.bind(this)}>Create</button>
         <input value={this.props.inputTodo} onKeyPress={this.handleKeyPress.bind(this)}/>
         <h1>Todos</h1>
