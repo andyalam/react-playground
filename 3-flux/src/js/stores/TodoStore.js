@@ -1,20 +1,25 @@
-import { EventEmitter } from "events";
+import { EventEmitter } from 'events';
 
 import dispatcher from "../dispatcher";
 
 class TodoStore extends EventEmitter {
   constructor() {
-    super()
+    super();
     this.todos = [
       {
-        id: 113464613,
-        text: "Go Shopping",
-        complete: false
+        id: 21312312,
+        text: "asdsadsadsa",
+        complete: true,
       },
       {
-        id: 235684679,
-        text: "Pay Water Bill",
-        complete: false
+        id: 54654645,
+        text: "anothaonee",
+        complete: false,
+      },
+      {
+        id: 5464564,
+        text: "llkasdklasd",
+        complete: false,
       },
     ];
   }
@@ -23,9 +28,9 @@ class TodoStore extends EventEmitter {
     const id = Date.now();
 
     this.todos.push({
-      id,
-      text,
-      complete: false,
+      id: id,
+      text: text,
+      complete: false
     });
 
     this.emit("change");
@@ -36,15 +41,11 @@ class TodoStore extends EventEmitter {
   }
 
   handleActions(action) {
+    console.log("Todo store received an action", action);
+
     switch(action.type) {
       case "CREATE_TODO": {
         this.createTodo(action.text);
-        break;
-      }
-      case "RECEIVE_TODOS": {
-        this.todos = action.todos;
-        this.emit("change");
-        break;
       }
     }
   }
@@ -53,5 +54,4 @@ class TodoStore extends EventEmitter {
 
 const todoStore = new TodoStore;
 dispatcher.register(todoStore.handleActions.bind(todoStore));
-
 export default todoStore;
