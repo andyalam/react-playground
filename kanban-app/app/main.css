@@ -29,6 +29,7 @@ body {
 }
 
 .note .editable {
+  float: left;
 }
 
 .note .delete {
