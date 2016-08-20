@@ -8,18 +8,31 @@ import TodoStore from "../stores/TodoStore";
 export default class Featured extends React.Component {
   constructor() {
     super();
+    this.getTodos = this.getTodos.bind(this);
     this.state = {
       todos: TodoStore.getAll(),
     };
   }
 
+
   // Will fire when the component is rendering to the DOM
   // for the first time ONLY
+
+  // listen to events on mount
   componentWillMount() {
-    TodoStore.on("change", () => {
-      this.setState({
-        todos: TodoStore.getAll()
-      });
+    TodoStore.on("change", this.getTodos);
+    console.log("count:", TodoStore.listenerCount("change"));
+    
+  }
+
+  // unlisten to events on unmount
+  componentWillUnmount() {
+    TodoStore.removeListener("change", this.getTodos);
+  }
+
+  getTodos() {
+    this.setState({
+      todos: TodoStore.getAll()
     });
   }
 
