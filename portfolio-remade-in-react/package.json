@@ -24,7 +24,10 @@
   },
   "devDependencies": {},
   "scripts": {
-    "dev": "webpack-dev-server --content-base src --inline --hot"
+    "dev": "webpack-dev-server --content-base src --inline --hot",
+    "build": "webpack",
+    "stats": "webpack --profile --json > stats.json",
+    "start": "webpack-dev-server"
   },
   "author": "",
   "license": "ISC"
