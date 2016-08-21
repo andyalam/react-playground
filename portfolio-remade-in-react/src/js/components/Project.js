@@ -38,6 +38,5 @@ info = {
   techStackUsed,
   linkGithub,
   linkDemo,
-  imgClassname
 }
 */
