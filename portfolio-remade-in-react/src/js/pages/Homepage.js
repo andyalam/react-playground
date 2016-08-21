@@ -1,8 +1,12 @@
 import React from "react";
 
+import Hero from "../components/Hero";
+//import Projects from "../components/Projects";
 
 export default class Homepage extends React.Component {
   render() {
-
+    return (
+      <Hero />
+    )
   }
 }
