@@ -1,0 +1,215 @@
+body .navbar {
+	background: rgba(0,0,0,0.8);
+	// Theme specificity override
+	.container {
+		a {
+			transition: all ease-in-out 100ms;
+		}
+		@media (min-width: 768px) {
+			.active > a {
+				background-color: $blue-light;
+		    &:hover {
+		      background-color: $blue-light * 2;
+		    }
+			}
+		  .active2 > a {
+		    background-color: $red-light;
+		    &:hover {
+		      background-color: $red-light * 2;
+		    }
+		  }
+		}
+		//removed for now, will display in old mobile site, display used in media
+		//below
+		.dropdown {
+			display: none;
+		}
+		.navbar-right {
+			margin-right: 0;
+		}
+		@media (min-width: 768px) {
+			.navbar-brand {
+				margin-left: -10px;
+			}
+		}
+	}
+}
+
+body #footer {
+	background: rgba(0,0,0,0.9);
+	button {
+		background-color: $blue-light;
+		transition: all ease-in-out 100ms;
+		border: none;
+		margin-bottom: 0;
+		margin-top: 0;
+		padding-bottom: 12px;
+		padding-top: 12px;
+    &:hover {
+      background-color: $blue-light * 2;
+    }
+	}
+}
+
+#bg1 {
+    /*margin-top: -20px;*/
+	background-image: url(../images/astronaut1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #333;
+
+  .jumbotron {
+    background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+    background: rgba(204, 204, 204, 0.2);
+    box-shadow: inset 0px 0px 0 2000px rgba(0,0,0,0.7);
+    color: white;
+		padding-top: 64px;
+  }
+
+  .personal {
+		position: relative;
+		width: 100%;
+    .external-links {
+			display: block;
+			margin-top: 20px;
+      .btn {
+			  background-color: $red-light;
+				border-color: $red-light;
+        display: block;
+        width: 100%;
+        margin: 5px 0;
+        font-size: 12px;
+				transition: all ease-in-out 100ms;
+        &:hover {
+          background-color: $red-light * 2;
+					transform: translate(-3px, 0);
+					box-shadow: 0px 0px 10px 1px $red-light;
+        }
+				&.btn-contact {
+					background-color: $blue-light;
+					border-color: $blue-light;
+				  &:hover {
+				    background-color: $blue-light * 2;
+						box-shadow: 0px 0px 10px 1px $blue-light;
+						color: black;
+				  }
+				}
+      }
+			//.github { background-color: $green-light; }
+			//.facebook { background-color: $blue-dark; }
+    }
+		.profile {
+			border-radius: 100%;
+			margin: 0 auto;
+			margin-top: 21px;
+			max-height: 250px;
+		}
+  }
+}
+
+#bg2 {
+	margin-bottom: 100px;
+	.img-wrap {
+		.img-responsive {
+			margin: 0 auto;
+		}
+	}
+	.img-box {
+		width: 100%;
+		height: 250px;
+		margin: 0 auto;
+		box-shadow: inset 1px 1px 40px 0 rgba(0,0,0,.45);
+		overflow: hidden;
+		.overlay {
+			background:rgba(0,0,0,.75);
+	    text-align: center;
+	    padding: 100px 0;
+	    opacity: 0;
+	    -webkit-transition: opacity .25s ease;
+			-moz-transition: opacity .25s ease;
+			&:hover {
+				opacity: 1;
+			}
+			a {
+				transition: all ease-in-out 100ms;
+				color: $red-light;
+				&:first-of-type {
+          color: $blue-light;
+          &:hover {
+            color: $blue-light * 2;
+          }
+        }
+        &:hover {
+          color: $red-light * 2;
+        }
+
+				&:hover {
+					text-decoration: none;
+				}
+			}
+			i { font-size: 60px; }
+		}
+    &.loc8r { background: url(../images/loc8r.png); background-size: cover; }
+    &.weatherapp { background: url(../images/weatherapp.png); background-size: cover; }
+    &.jscalc { background: url(../images/jscalc.png); background-size: cover; }
+    &.sorttimer { background: url(../images/sorttimer.png); background-size: cover; }
+    &.quotemachine { background: url(../images/quotemachine1.png); background-size: cover; }
+    &.starsnearearth { background: url(../images/starsnearearth.png); background-size: cover; }
+	}
+}
+
+.holder {
+	position: relative;
+	.dummy-link {
+		position: absolute;
+		top: -45px;
+	}
+}
+
+#contactModal {
+  color: black;
+}
+
+.contact-mobile-form {
+	display: none;
+}
+
+//Separation of Desktop/Tablet and Phone displays for now
+@media (max-width: 768px) {
+	.personal {
+		display: none;
+	}
+	.contact-mobile-form {
+		display: block;
+	}
+	.navbar {
+		background-color: #008cba;
+		.dropdown {
+			display: block;
+		}
+		.navbar-nav {
+			margin-top: 0;
+			margin-bottom: 10px;
+			li.active a {
+				background-color: inherit;
+			}
+		}
+		.navbar-collapse {
+				border-top: 1px solid white;
+		}
+	}
+	#footer {
+		.navbar-text {
+			display: none;
+		}
+	}
+}
+@media (max-width: 991px) {
+	.profile {
+		display: none;
+	}
+}
+
+.modal-backdrop {
+	background-color: white;
+}
