@@ -15,7 +15,7 @@ import Layout from "./pages/Layout";
 const app = document.getElementById('app');
 
 const App = () => (
-  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+  <MuiThemeProvider>
     <Layout />
   </MuiThemeProvider>
 )
