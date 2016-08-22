@@ -40,6 +40,10 @@ export default class Featured extends React.Component {
     TodoActions.createTodo("wooo");
   }
 
+  sortTodos() {
+    TodoActions.sortTodos();
+  }
+
   handleKeyPress(e) {
     if (e.key === "Enter") {
       TodoActions.createTodo(e.target.value);
@@ -60,6 +64,7 @@ export default class Featured extends React.Component {
 
     return (
       <div>
+        <button onClick={this.sortTodos.bind(this)}>Sort</button>
         <button onClick={this.reloadTodos.bind(this)}>Reload</button>
         <button onClick={this.createTodo.bind(this)}>Create</button>
         <input value={this.props.inputTodo} onKeyPress={this.handleKeyPress.bind(this)}/>
