@@ -13,6 +13,8 @@ import PopupMenu from "../components/PopupMenu";
 import * as TodoActions from "../actions/TodoActions";
 import TodoStore from "../stores/TodoStore";
 
+import Todo from "../components/Todo";
+
 
 const style = {
   display: 'inline-block',
@@ -24,7 +26,23 @@ const textFieldStyle = {
 };
 
 export default class Layout extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      todos: TodoStore.getAll()
+    }
+  }
+
+  getTodos() {
+    this.todos = TodoStore.getAll();
+  }
+
   render() {
+    const { todos } = this.state;
+    const TodoComponents = todos.map((todo) => {
+      return <Todo key={todo.id} {...todo} />
+    });
     return (
       <div style={{maxWidth: 500, margin: "0 auto"}}>
         <AppBar
@@ -44,7 +62,7 @@ export default class Layout extends React.Component {
               <Divider />
             </Paper>
             <List>
-              {todos}
+              {TodoComponents}
             </List>
           </CardText>
         </Card>

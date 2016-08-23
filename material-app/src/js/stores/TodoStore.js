@@ -38,6 +38,10 @@ class TodoStore extends EventEmitter {
     this.emit("change");
   }
 
+  getAll() {
+    return this.todos;
+  }
+
   handleActions(action) {
     // switch statement which uses this.emit
     // to emit events
