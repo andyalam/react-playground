@@ -15,6 +15,7 @@ import TodoStore from "../stores/TodoStore";
 
 import Todo from "../components/Todo";
 
+window.TodoActions = TodoActions;
 
 const style = {
   display: 'inline-block',
@@ -28,14 +29,34 @@ const textFieldStyle = {
 export default class Layout extends React.Component {
   constructor() {
     super();
-
+    this.getTodos = this.getTodos.bind(this);
     this.state = {
       todos: TodoStore.getAll()
     }
   }
 
+  componentWillMount() {
+    TodoStore.on("change", this.getTodos);
+  }
+
+  componentWillUnmount() {
+    TodoStore.removeListener("change", this.getTodos);
+  }
+
   getTodos() {
-    this.todos = TodoStore.getAll();
+    //this.todos = TodoStore.getAll();
+    this.setState({
+      todos: TodoStore.getAll()
+    });
+  }
+
+  // for input
+  checkEnter(e) {
+    console.log(e.target.value);
+    console.log(e.key);
+    if (e.key === "Enter") {
+      TodoActions.createTodo(e.target.value)
+    }
   }
 
   render() {
@@ -58,7 +79,7 @@ export default class Layout extends React.Component {
           </CardActions>
           <CardText>
             <Paper zDepth={2}>
-              <TextField hintText="Item" style={textFieldStyle} underlineShow={false} />
+              <TextField hintText="Item" style={textFieldStyle} underlineShow={false} onKeyPress={this.checkEnter}/>
               <Divider />
             </Paper>
             <List>
