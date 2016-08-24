@@ -4,8 +4,11 @@ import { ListItem } from 'material-ui/List';
 export default class Todo extends React.Component {
   constructor(props) {
     super();
+    console.log("props", props);
+    console.log("this props", this.props);
     this.state = {
-      edit: false
+      edit: false,
+      text: props.text
     }
   };
 
@@ -17,19 +20,33 @@ export default class Todo extends React.Component {
 
   checkKeyPress(e) {
     if (e.key === "Enter") {
-      console.log("enter");
+      this.setState({
+        edit: false,
+        text: e.target.value
+      })
     }
-    console.log(e.key);
+  }
+
+  updateState() {
+    this.setState({
+      value: "1"
+    })
   }
 
   render() {
-    const { complete, edit, text } = this.props;
-    const icon = complete ? "\u2714" : "\u2716";
+    const { text } = this.state;
 
     if (this.state.edit) {
       return (
           <ListItem
-            primaryText={<input type="text" onKeyPress={() => {this.checkKeyPress.bind(this)}}/>}
+            primaryText={
+              <input 
+                type="text" 
+                defaultValue={text}
+                autoFocus={true} 
+                onKeyPress={this.checkKeyPress.bind(this)}
+              />
+            }
           />
       );
     }

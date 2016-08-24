@@ -63,6 +63,7 @@ export default class Layout extends React.Component {
     const TodoComponents = todos.map((todo) => {
       return <Todo key={todo.id} edit={false} {...todo} />
     });
+    
     return (
       <div style={{maxWidth: 500, margin: "0 auto"}}>
         <AppBar
