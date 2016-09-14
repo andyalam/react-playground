@@ -29,7 +29,7 @@ class TodoStore extends EventEmitter {
   }
 
   createTodo(text) {
-    this.todos.push({
+    this.todos.unshift({
       id: Date.now(),
       text: text,
       complete: false

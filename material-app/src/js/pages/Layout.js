@@ -52,18 +52,18 @@ export default class Layout extends React.Component {
 
   // for input
   checkEnter(e) {
-    console.log(e.target.value);
-    console.log(e.key);
     if (e.key === "Enter") {
-      TodoActions.createTodo(e.target.value)
+      TodoActions.createTodo(e.target.value);
+      e.target.value = "";
     }
   }
 
   render() {
     const { todos } = this.state;
     const TodoComponents = todos.map((todo) => {
-      return <Todo key={todo.id} {...todo} />
+      return <Todo key={todo.id} edit={false} {...todo} />
     });
+    
     return (
       <div style={{maxWidth: 500, margin: "0 auto"}}>
         <AppBar
@@ -78,7 +78,7 @@ export default class Layout extends React.Component {
             <FlatButton label="Action2" />
           </CardActions>
           <CardText>
-            <Paper zDepth={2}>
+            <Paper zDepth={1}>
               <TextField hintText="Item" style={textFieldStyle} underlineShow={false} onKeyPress={this.checkEnter}/>
               <Divider />
             </Paper>
