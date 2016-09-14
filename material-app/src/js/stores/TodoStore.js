@@ -38,6 +38,14 @@ class TodoStore extends EventEmitter {
     this.emit("change");
   }
 
+  updateTodo(text, id) {
+    this.todos.find((todo) => {
+      return todo.id === id;
+    }).text = text;
+    
+    this.emit("change");
+  }
+
   getAll() {
     return this.todos;
   }
@@ -45,14 +53,14 @@ class TodoStore extends EventEmitter {
   handleActions(action) {
     // switch statement which uses this.emit
     // to emit events
-    console.log("store received action:", action);
     switch(action.type) {
       case "CREATE_TODO": {
-        console.log("created todo");
         this.createTodo(action.text);
+        break;
       }
-      case "RECEIVE_TODO": {
-
+      case "UPDATE_TODO": {
+        this.updateTodo(action.text, action.id);
+        break;
       }
     }
   }

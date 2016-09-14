@@ -6,3 +6,11 @@ export function createTodo(text) {
     text
   });
 }
+
+export function updateTodo(text, id) {
+  dispatcher.dispatch({
+    type: "UPDATE_TODO",
+    text,
+    id
+  });
+}

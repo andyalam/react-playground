@@ -1,11 +1,10 @@
 import React from "react";
 import { ListItem } from 'material-ui/List';
+import * as TodoActions from "../actions/TodoActions";
 
 export default class Todo extends React.Component {
   constructor(props) {
     super();
-    console.log("props", props);
-    console.log("this props", this.props);
     this.state = {
       edit: false,
       text: props.text
@@ -23,7 +22,8 @@ export default class Todo extends React.Component {
       this.setState({
         edit: false,
         text: e.target.value
-      })
+      });
+      TodoActions.updateTodo(e.target.value, this.props.id);
     }
   }
 
@@ -31,6 +31,7 @@ export default class Todo extends React.Component {
     this.setState({
       value: "1"
     })
+
   }
 
   render() {
@@ -40,10 +41,10 @@ export default class Todo extends React.Component {
       return (
           <ListItem
             primaryText={
-              <input 
-                type="text" 
+              <input
+                type="text"
                 defaultValue={text}
-                autoFocus={true} 
+                autoFocus={true}
                 onKeyPress={this.checkKeyPress.bind(this)}
               />
             }
