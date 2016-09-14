@@ -17,6 +17,12 @@ export default class Todo extends React.Component {
     });
   }
 
+  disableEdit() {
+    this.setState({
+      edit: false
+    });
+  }
+
   checkKeyPress(e) {
     if (e.key === "Enter") {
       this.setState({
@@ -37,6 +43,8 @@ export default class Todo extends React.Component {
   render() {
     const { text } = this.state;
 
+    console.log('rendertodo');
+
     if (this.state.edit) {
       return (
           <ListItem
@@ -56,6 +64,7 @@ export default class Todo extends React.Component {
       <ListItem
         primaryText={text}
         onClick={() => { this.enableEdit() }}
+        onBlur={() => { this.disableEdit() }}
       />
     )
   }
