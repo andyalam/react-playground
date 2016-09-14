@@ -42,7 +42,21 @@ class TodoStore extends EventEmitter {
     this.todos.find((todo) => {
       return todo.id === id;
     }).text = text;
-    
+
+    this.emit("change");
+  }
+
+  sortTodos() {
+    this.todos.sort((a, b) => {
+        var aText = a.text.toLowerCase();
+        var bText = b.text.toLowerCase();
+        console.log(aText, bText);
+        if (a > b) return 1;
+        if (a < b) return -1;
+        return 0;
+    });
+    console.log('sort');
+    console.log(this.todos);
     this.emit("change");
   }
 
@@ -60,6 +74,10 @@ class TodoStore extends EventEmitter {
       }
       case "UPDATE_TODO": {
         this.updateTodo(action.text, action.id);
+        break;
+      }
+      case "SORT_TODOS": {
+        this.sortTodos();
         break;
       }
     }

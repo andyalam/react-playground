@@ -14,3 +14,9 @@ export function updateTodo(text, id) {
     id
   });
 }
+
+export function sortTodos() {
+  dispatcher.dispatch({
+    type: "SORT_TODOS"
+  });
+}

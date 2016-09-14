@@ -58,12 +58,16 @@ export default class Layout extends React.Component {
     }
   }
 
+  sortList() {
+    TodoActions.sortTodos();
+  }
+
   render() {
     const { todos } = this.state;
     const TodoComponents = todos.map((todo) => {
       return <Todo key={todo.id} edit={false} {...todo} />
     });
-    
+
     return (
       <div style={{maxWidth: 500, margin: "0 auto"}}>
         <AppBar
@@ -74,8 +78,8 @@ export default class Layout extends React.Component {
         />
         <Card>
           <CardActions>
-            <FlatButton label="Action1" />
-            <FlatButton label="Action2" />
+            <FlatButton label="Sort" onClick={this.sortList}/>
+            <FlatButton label="Empty" />
           </CardActions>
           <CardText>
             <Paper zDepth={1}>
