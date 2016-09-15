@@ -53,6 +53,8 @@ export default class Layout extends React.Component {
   // for input
   checkEnter(e) {
     if (e.key === "Enter") {
+      if (!e.target.value.replace(/ /g,'').length) { return; }
+
       TodoActions.createTodo(e.target.value);
       e.target.value = "";
     }
@@ -60,6 +62,10 @@ export default class Layout extends React.Component {
 
   sortList() {
     TodoActions.sortTodos();
+  }
+
+  emptyList() {
+    TodoActions.emptyTodos();
   }
 
   render() {
@@ -79,7 +85,7 @@ export default class Layout extends React.Component {
         <Card>
           <CardActions>
             <FlatButton label="Sort" onClick={this.sortList}/>
-            <FlatButton label="Empty" />
+            <FlatButton label="Empty" onClick={this.emptyList}/>
           </CardActions>
           <CardText>
             <Paper zDepth={1}>

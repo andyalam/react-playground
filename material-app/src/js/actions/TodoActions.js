@@ -20,3 +20,10 @@ export function sortTodos() {
     type: "SORT_TODOS"
   });
 }
+
+
+export function emptyTodos() {
+  dispatcher.dispatch({
+    type: "EMPTY_TODOS"
+  });
+}

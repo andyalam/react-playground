@@ -47,16 +47,21 @@ class TodoStore extends EventEmitter {
   }
 
   sortTodos() {
-    this.todos.sort((a, b) => {
+    this.todos.sort(function(a, b) {
         var aText = a.text.toLowerCase();
         var bText = b.text.toLowerCase();
         console.log(aText, bText);
-        if (a > b) return 1;
-        if (a < b) return -1;
+        if (aText > bText) return 1;
+        if (aText < bText) return -1;
         return 0;
     });
     console.log('sort');
     console.log(this.todos);
+    this.emit("change");
+  }
+
+  emptyTodos() {
+    this.todos.length = 0;
     this.emit("change");
   }
 
@@ -78,6 +83,10 @@ class TodoStore extends EventEmitter {
       }
       case "SORT_TODOS": {
         this.sortTodos();
+        break;
+      }
+      case "EMPTY_TODOS": {
+        this.emptyTodos();
         break;
       }
     }

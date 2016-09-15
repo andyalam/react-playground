@@ -25,6 +25,10 @@ export default class Todo extends React.Component {
 
   checkKeyPress(e) {
     if (e.key === "Enter") {
+      if (!e.target.value.length) {
+        return;
+      }
+
       this.setState({
         edit: false,
         text: e.target.value
@@ -42,8 +46,6 @@ export default class Todo extends React.Component {
 
   render() {
     const { text } = this.state;
-
-    console.log('rendertodo');
 
     if (this.state.edit) {
       return (
