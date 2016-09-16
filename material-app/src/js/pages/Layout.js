@@ -8,14 +8,12 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
 import {List, ListItem} from 'material-ui/List';
-import PopupMenu from "../components/PopupMenu";
 
 import * as TodoActions from "../actions/TodoActions";
 import TodoStore from "../stores/TodoStore";
 
 import Todo from "../components/Todo";
 
-window.TodoActions = TodoActions;
 
 const style = {
   display: 'inline-block',

@@ -1,6 +1,13 @@
 import React from "react";
 import { ListItem } from 'material-ui/List';
+import TextField from 'material-ui/TextField';
 import * as TodoActions from "../actions/TodoActions";
+
+
+const textFieldStyle = {
+  width: '90%',
+  marginLeft: 20
+};
 
 export default class Todo extends React.Component {
   constructor(props) {
@@ -17,7 +24,8 @@ export default class Todo extends React.Component {
     });
   }
 
-  disableEdit() {
+  disableEdit(e) {
+    console.log(e.target.parentNode);
     this.setState({
       edit: false
     });
@@ -49,16 +57,15 @@ export default class Todo extends React.Component {
 
     if (this.state.edit) {
       return (
-          <ListItem
-            primaryText={
-              <input
-                type="text"
-                defaultValue={text}
-                autoFocus={true}
-                onKeyPress={this.checkKeyPress.bind(this)}
-              />
-            }
-          />
+        <TextField
+          hintText="Todo Item"
+          type="text"
+          defaultValue={text}
+          autoFocus={true}
+          onKeyPress={this.checkKeyPress.bind(this)}
+          onBlur={(e) => { this.disableEdit(e) }}
+          style={textFieldStyle}
+        />
       );
     }
 
@@ -66,7 +73,6 @@ export default class Todo extends React.Component {
       <ListItem
         primaryText={text}
         onClick={() => { this.enableEdit() }}
-        onBlur={() => { this.disableEdit() }}
       />
     )
   }

@@ -47,7 +47,7 @@ class TodoStore extends EventEmitter {
   }
 
   sortTodos() {
-    this.todos.sort(function(a, b) {
+    this.todos.sort((a, b) => {
         var aText = a.text.toLowerCase();
         var bText = b.text.toLowerCase();
         console.log(aText, bText);
