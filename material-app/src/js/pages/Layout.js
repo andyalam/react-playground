@@ -24,6 +24,10 @@ const textFieldStyle = {
   marginLeft: 20,
 };
 
+const centerText = {
+  textAlign: 'center'
+};
+
 export default class Layout extends React.Component {
   constructor() {
     super();
@@ -75,19 +79,26 @@ export default class Layout extends React.Component {
     return (
       <div style={{maxWidth: 500, margin: "0 auto"}}>
         <AppBar
-          title="Material App"
+          title="Material Todo List"
           iconElementLeft={
             <p></p>
           }
+          style={centerText}
         />
+        
         <Card>
-          <CardActions>
+          <CardActions style={centerText}>
             <FlatButton label="Sort" onClick={this.sortList}/>
             <FlatButton label="Empty" onClick={this.emptyList}/>
           </CardActions>
           <CardText>
             <Paper zDepth={1}>
-              <TextField hintText="Item" style={textFieldStyle} underlineShow={false} onKeyPress={this.checkEnter}/>
+              <TextField
+                hintText="Item"
+                style={textFieldStyle}
+                underlineShow={false}
+                onKeyPress={this.checkEnter}
+              />
               <Divider />
             </Paper>
             <List>

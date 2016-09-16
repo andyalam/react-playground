@@ -1,6 +1,7 @@
 import React from "react";
 import { ListItem } from 'material-ui/List';
 import TextField from 'material-ui/TextField';
+import Checkbox from 'material-ui/Checkbox';
 import * as TodoActions from "../actions/TodoActions";
 
 
@@ -14,18 +15,26 @@ export default class Todo extends React.Component {
     super();
     this.state = {
       edit: false,
+      checked: false,
       text: props.text
     }
   };
 
-  enableEdit() {
+  handleClick(e) {
+    if (e.target.nodeName === "INPUT") { return; }
+
     this.setState({
       edit: true
     });
   }
 
+  handleCheck() {
+    this.setState({
+      checked: true
+    });
+  }
+
   disableEdit(e) {
-    console.log(e.target.parentNode);
     this.setState({
       edit: false
     });
@@ -45,14 +54,9 @@ export default class Todo extends React.Component {
     }
   }
 
-  updateState() {
-    this.setState({
-      value: "1"
-    })
-
-  }
 
   render() {
+    console.log('render');
     const { text } = this.state;
 
     if (this.state.edit) {
@@ -72,7 +76,8 @@ export default class Todo extends React.Component {
     return (
       <ListItem
         primaryText={text}
-        onClick={() => { this.enableEdit() }}
+        onClick={(e) => { this.handleClick(e) }}
+        leftIcon={<Checkbox checked={this.state.checked} onCheck={ this.handleCheck.bind(this) } />}
       />
     )
   }
