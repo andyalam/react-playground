@@ -46,7 +46,6 @@ export default class Layout extends React.Component {
   }
 
   getTodos() {
-    //this.todos = TodoStore.getAll();
     this.setState({
       todos: TodoStore.getAll()
     });
@@ -85,7 +84,7 @@ export default class Layout extends React.Component {
           }
           style={centerText}
         />
-        
+
         <Card>
           <CardActions style={centerText}>
             <FlatButton label="Sort" onClick={this.sortList}/>

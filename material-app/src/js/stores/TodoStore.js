@@ -13,7 +13,7 @@ class TodoStore extends EventEmitter {
       {
         id: 123,
         text: "Learn react",
-        complete: false,
+        complete: true,
       },
       {
         id: 456,
@@ -38,6 +38,14 @@ class TodoStore extends EventEmitter {
     this.emit("change");
   }
 
+  checkTodo(id, checked) {
+    this.todos.find((todo) => {
+      return todo.id === id;
+    }).complete = checked;
+
+    this.emit("change");
+  }
+
   updateTodo(text, id) {
     this.todos.find((todo) => {
       return todo.id === id;
@@ -50,13 +58,11 @@ class TodoStore extends EventEmitter {
     this.todos.sort((a, b) => {
         var aText = a.text.toLowerCase();
         var bText = b.text.toLowerCase();
-        console.log(aText, bText);
         if (aText > bText) return 1;
         if (aText < bText) return -1;
         return 0;
     });
-    console.log('sort');
-    console.log(this.todos);
+
     this.emit("change");
   }
 
@@ -79,6 +85,10 @@ class TodoStore extends EventEmitter {
       }
       case "UPDATE_TODO": {
         this.updateTodo(action.text, action.id);
+        break;
+      }
+      case "CHECK_TODO": {
+        this.checkTodo(action.id, action.checked);
         break;
       }
       case "SORT_TODOS": {

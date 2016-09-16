@@ -15,7 +15,7 @@ export default class Todo extends React.Component {
     super();
     this.state = {
       edit: false,
-      checked: false,
+      complete: props.complete,
       text: props.text
     }
   };
@@ -29,9 +29,7 @@ export default class Todo extends React.Component {
   }
 
   handleCheck(e) {
-    this.setState({
-      checked: e.target.checked
-    });
+    TodoActions.checkTodo(this.props.id, !this.props.complete);
   }
 
   disableEdit(e) {
@@ -56,8 +54,7 @@ export default class Todo extends React.Component {
 
 
   render() {
-    console.log('render');
-    const { text } = this.state;
+    const { text, complete } = this.state;
 
     if (this.state.edit) {
       return (
@@ -77,7 +74,7 @@ export default class Todo extends React.Component {
       <ListItem
         primaryText={text}
         onClick={(e) => { this.handleClick(e) }}
-        leftIcon={<Checkbox checked={this.state.checked} onCheck={ (e) => this.handleCheck(e) } />}
+        leftIcon={<Checkbox defaultChecked={complete} onCheck={ (e) => this.handleCheck(e) } />}
       />
     )
   }
