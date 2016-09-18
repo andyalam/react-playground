@@ -34,7 +34,7 @@ export default class Todo extends React.Component {
 
   disableEdit(e) {
     this.setState({
-      edit: false
+      edit: false,
     });
   }
 
@@ -46,7 +46,6 @@ export default class Todo extends React.Component {
 
       this.setState({
         edit: false,
-        text: e.target.value
       });
       TodoActions.updateTodo(e.target.value, this.props.id);
     }
@@ -61,7 +60,7 @@ export default class Todo extends React.Component {
         <TextField
           hintText="Todo Item"
           type="text"
-          defaultValue={text}
+          defaultValue={this.props.text}
           autoFocus={true}
           onKeyPress={this.checkKeyPress.bind(this)}
           onBlur={(e) => { this.disableEdit(e) }}
@@ -72,9 +71,9 @@ export default class Todo extends React.Component {
 
     return (
       <ListItem
-        primaryText={text}
+        primaryText={this.props.text}
         onClick={(e) => { this.handleClick(e) }}
-        leftIcon={<Checkbox defaultChecked={complete} onCheck={ (e) => this.handleCheck(e) } />}
+        leftIcon={<Checkbox checked={this.props.complete} onCheck={ (e) => this.handleCheck(e) } />}
       />
     )
   }

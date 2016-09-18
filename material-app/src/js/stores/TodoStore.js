@@ -43,6 +43,7 @@ class TodoStore extends EventEmitter {
       return todo.id === id;
     }).complete = checked;
 
+    console.log('all changed');
     this.emit("change");
   }
 
