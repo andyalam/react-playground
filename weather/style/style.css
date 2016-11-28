@@ -1,0 +1,8 @@
+.input-group {
+  margin: 20px 0;
+}
+
+body .table tr td, body .table tr th {
+  vertical-align: middle;
+  text-align: center;
+}
