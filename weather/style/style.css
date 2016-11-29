@@ -6,3 +6,8 @@ body .table tr td, body .table tr th {
   vertical-align: middle;
   text-align: center;
 }
+
+td:first-of-type {
+  height: 200px;
+  width: 250px;
+}
