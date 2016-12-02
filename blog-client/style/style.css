@@ -1,3 +1,10 @@
 .add-post {
   margin-top: 15px;
 }
+
+form {
+  margin-top: 15px;
+}
+form .btn-danger {
+  margin-right: 15px;
+}
