@@ -1,3 +1,8 @@
+.content__wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 .add-post {
   margin-top: 15px;
 }
@@ -7,4 +12,25 @@ form {
 }
 form .btn-danger {
   margin-right: 15px;
+}
+
+body a:hover {
+  text-decoration: none;
+}
+
+.single-post {
+  color: #292b2c;
+}
+.single-post:hover {
+  color: #333;
+}
+.single-post:hover li {
+  background: #eee;
+}
+
+.single-post-page {
+  margin-top: 15px;
+}
+.single-post-page, .single-post-page .btn {
+  margin-bottom: 20px;
 }
