@@ -9,7 +9,8 @@ class App extends Component {
       { name: 'Bob', age: 40 },
       { name: 'Tester', age: 999 }
     ],
-    extra: 'Won\'t be changed below with setState'
+    extra: 'Won\'t be changed below with setState',
+    showPersons: false
   }
 
   switchNameHandler = (newName) => {
@@ -32,6 +33,13 @@ class App extends Component {
     });
   }
 
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({
+      showPersons: !doesShow
+    });
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -41,28 +49,36 @@ class App extends Component {
       cursor: 'pointer'
     };
 
+    const persons = this.state.showPersons
+      ? (
+        <div>
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+            click={this.switchNameHandler.bind(this, 'down here')}
+            changed={this.nameChangedHandler} />
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+            changed={this.nameChangedHandler} />
+          <Person
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}
+            changed={this.nameChangedHandler} />
+        </div>
+      )
+      : null;
+
     return (
       <div className="App">
         <h1>Hi I'm a react app</h1>
         <p>This is working.</p>
         <button
           style={style}
-          onClick={this.switchNameHandler.bind(this, 'new name')}>
-          Switch Name
+          onClick={this.togglePersonsHandler}>
+          Toggle Persons
         </button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          click={this.switchNameHandler.bind(this, 'down here')}
-          changed={this.nameChangedHandler} />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          changed={this.nameChangedHandler} />
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-          changed={this.nameChangedHandler} />
+        {persons}
       </div>
     );
   }
