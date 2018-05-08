@@ -44,15 +44,18 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer'
     };
 
-    const persons = this.state.showPersons
-      ? (
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
         <div>
           {this.state.persons.map((person, index) => {
             return <Person
@@ -63,13 +66,22 @@ class App extends Component {
               changed={(event) => this.nameChangedHandler(event, person.id)} />
           })}
         </div>
-      )
-      : null;
+      );
+      style.backgroundColor = 'red';
+    }
+
+    const classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push('red');
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push('bold');
+    }
 
     return (
       <div className="App">
         <h1>Hi I'm a react app</h1>
-        <p>This is working.</p>
+        <p className={classes.join(' ')}>This is working.</p>
         <button
           style={style}
           onClick={this.togglePersonsHandler}>
