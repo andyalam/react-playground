@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import classes from './Cockpit.css';
-import Aux from '../../hoc/Aux';
 
 class Cockpit extends Component {
     render() {
@@ -18,7 +17,7 @@ class Cockpit extends Component {
         }
 
         return (
-            <Aux>
+            <Fragment>
                 <h1>{this.props.appTitle}</h1>
                 <p className={assignedClasses.join(' ')}>
                     This is working.
@@ -28,7 +27,7 @@ class Cockpit extends Component {
                     onClick={this.props.clicked}>
                     Toggle Persons
                 </button>
-            </Aux>
+            </Fragment>
         );
     }
 }
