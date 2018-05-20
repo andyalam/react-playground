@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 
 import classes from './Cockpit.css';
+import Aux from '../../hoc/Aux';
 
 class Cockpit extends Component {
     render() {
-        const btnClass = this.props.showPersons ? classes.Red : '';
+        const btnClass = this.props.showPersons
+            ? [classes.Button, classes.Red].join(' ')
+            : classes.Button;
         const assignedClasses = [];
 
         if (this.props.persons.length <= 2) {
@@ -15,7 +18,7 @@ class Cockpit extends Component {
         }
 
         return (
-            <div className={classes.Cockpit}>
+            <Aux>
                 <h1>{this.props.appTitle}</h1>
                 <p className={assignedClasses.join(' ')}>
                     This is working.
@@ -25,7 +28,7 @@ class Cockpit extends Component {
                     onClick={this.props.clicked}>
                     Toggle Persons
                 </button>
-            </div>
+            </Aux>
         );
     }
 }
