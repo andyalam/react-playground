@@ -27,6 +27,7 @@ class Cockpit extends Component {
                     onClick={this.props.clicked}>
                     Toggle Persons
                 </button>
+                <button onClick={this.props.login}>Log in</button>
             </Fragment>
         );
     }
