@@ -25,6 +25,7 @@ class App extends PureComponent {
     }
   }
 
+  // 16.3 - discouraged
   componentWillMount() {
     console.log('[App.js Inside componentWillMount');
   }
@@ -39,10 +40,31 @@ class App extends PureComponent {
   //       nextState.showPersons !== this.state.showPersons;
   // }
 
+  // 16.3 - discouraged
   componentWillUpdate(nextProps, nextState) {
       console.log('[UPDATE App.js] inside componentWillUpdate', nextProps, nextState);
   }
 
+  // 16.3 - new life cycle method
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log(
+      '[UPDATE App.js] inside getDerivedStateFromProps',
+      nextProps,
+      prevState
+    );
+
+    return prevState;
+  }
+
+  // 16.3 - new life cycle method
+  // ex: save current scrolling position
+  getSnapshotBeforeUpdate() {
+    console.log(
+      '[UPDATE App.js] inside getSnapshotBeforeUpdate'
+    );
+  }
+
+  // ex: scroll user back to scrolling position
   componentDidUpdate() {
       console.log('[UPDATE App.js] inside componentDidUpdate');
   }
