@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/share/yarn/bin/yarn.js install
+  /usr/local/bin/node /usr/share/yarn/bin/yarn.js add axios
 
 PATH: 
   /home/andy/mongodb/mongodb-linux-x86_64-amazon-3.4.4/bin:/home/andy/Golang/bin:/usr/local/go/bin:/home/andy/bin:/home/andy/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/home/andy/Android/Sdk/bin:/home/andy/.config/composer/vendor/bin
@@ -38,4 +38,4 @@ Lockfile:
   No lockfile
 
 Trace: 
-  Error: EACCES: permission denied, mkdir '/home/andy/Desktop/src/react-playground/2018/react-complete/http/node_modules/@babel'
+  Error: EACCES: permission denied, mkdir '/home/andy/Desktop/src/react-playground/2018/react-complete/http/node_modules/aria-query/node_modules'
