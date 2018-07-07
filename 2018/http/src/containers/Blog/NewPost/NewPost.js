@@ -27,14 +27,19 @@ class NewPost extends Component {
             .post('/posts', post)
             .then(response => {
                 console.log(response);
-                this.setState({ submitted: true });
+                this.props.history.push('/posts');
+                // also horrible for this use case, replaces the state
+                // this.props.history.replace('/posts');
+                // this.setState({ submitted: true });
             });
     }
 
     render () {
+        // this is horrible, doesn't push onto the history
         const redirect = this.state.submitted
             ? <Redirect to="/posts" />
             : null;
+
         return (
             <div className="NewPost">
                 {redirect}
