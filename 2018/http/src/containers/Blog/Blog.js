@@ -3,7 +3,6 @@ import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 
 import './Blog.css';
 import Posts from './Posts/Posts';
-import FullPost from './FullPost/FullPost';
 import NewPost from './NewPost/NewPost'
 
 class Blog extends Component {
