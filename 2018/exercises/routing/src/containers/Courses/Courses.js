@@ -14,7 +14,7 @@ class Courses extends Component {
     courseClickedHandler = (course) => {
         this.props.history.push({
             pathname: `/courses/${course.id}`,
-            search: course.title
+            search: `?title=${course.title}`
         });
     };
 

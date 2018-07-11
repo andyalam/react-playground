@@ -17,9 +17,16 @@ class Course extends Component {
     loadData() {
         console.log('loaddata');
         const { id } = this.props.match.params;
-        if (id !== null && id !== undefined) {
-            if (this.state.id !== id) {
-                this.setState({ id });
+
+        const params = new URLSearchParams(this.props.location.search);
+        const title = params.get('title');
+
+        if (
+            (id !== null && id !== undefined) ||
+            (title !== null && title !== undefined)
+        ) {
+            if (this.state.id !== id || this.state.title !== title) {
+                this.setState({ id, title });
             }
         }
     }
