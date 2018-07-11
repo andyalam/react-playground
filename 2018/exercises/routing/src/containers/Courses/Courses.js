@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 
+import Course from '../Course/Course';
 import './Courses.css';
 
 class Courses extends Component {
@@ -36,6 +38,7 @@ class Courses extends Component {
                 <section className="Courses">
                     {courses}
                 </section>
+                <Route path="/courses/:id" exact component={Course} />
             </div>
         );
     }

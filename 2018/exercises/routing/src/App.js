@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Redirect, NavLink } from 'react-router-dom';
 
 import Courses from './containers/Courses/Courses';
-import Course from './containers/Course/Course';
 import Users from './containers/Users/Users';
 
 class App extends Component {
@@ -29,10 +28,10 @@ class App extends Component {
             </nav>
           </header>
           <Switch>
-            <Route path="/courses" exact component={Courses} />
-            <Route path="/courses/:id" exact component={Course} />
+            <Route path="/courses" component={Courses} />
             <Route path="/users" component={Users} />
             <Redirect from="/all-courses" to="/courses" />
+            <Route render={() => <h1>Not found</h1>} />
           </Switch>
         </div>
       </BrowserRouter>
