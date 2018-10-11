@@ -3,17 +3,13 @@ import {
     DECREMENT,
     SUBTRACT,
     ADD,
-    STORE_RESULT,
-    DELETE_RESULT
-} from './actions';
+} from '../actions';
 
 const initialState = {
-    counter: 0,
-    results: []
+    counter: 0
 };
 
 const reducer = (state = initialState, action) => {
-    console.log(state, action);
     switch (action.type) {
         case INCREMENT:
             return {
@@ -35,20 +31,6 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 counter: state.counter + action.payload
             };
-        case STORE_RESULT:
-            return {
-                ...state,
-                results: state.results.concat({
-                    id: new Date(),
-                    value: state.counter
-                })
-            };
-        case DELETE_RESULT:
-            return {
-                ...state,
-                results: state.results
-                    .filter(result => result.id !== action.payload.id)
-            }
         default:
             return state;
     }
