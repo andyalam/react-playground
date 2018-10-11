@@ -22,8 +22,8 @@ export function onSubtractCount(amount) {
     return { type: SUBTRACT, payload: amount };
 }
 
-export function onStoreResult() {
-    return { type: STORE_RESULT };
+export function onStoreResult(count) {
+    return { type: STORE_RESULT, payload: { count } };
 }
 
 export function onDeleteResult(id) {

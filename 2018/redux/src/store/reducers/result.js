@@ -8,13 +8,14 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+    console.log(action);
     switch (action.type) {
         case STORE_RESULT:
             return {
                 ...state,
                 results: state.results.concat({
                     id: new Date(),
-                    value: state.counter
+                    value: action.payload.count
                 })
             };
         case DELETE_RESULT:
