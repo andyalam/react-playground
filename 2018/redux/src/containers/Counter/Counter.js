@@ -8,7 +8,9 @@ import {
     onIncrementCount,
     onDecrementCount,
     onAddCount,
-    onSubtractCount
+    onSubtractCount,
+    onStoreResult,
+    onDeleteResult
 } from '../../store/actions';
 
 class Counter extends Component {
@@ -41,6 +43,16 @@ class Counter extends Component {
                 <CounterControl label="Decrement" clicked={this.props.onDecrementCount}  />
                 <CounterControl label="Add 5" clicked={() => this.props.onAddCount(5)}  />
                 <CounterControl label="Subtract 5" clicked={() => this.props.onSubtractCount(5)}  />
+                <hr />
+                <button onClick={this.props.onStoreResult}>Store Result</button>
+                <ul>
+                    {this.props.results.map((result) => <li
+                            key={result.id}
+                            onClick={this.props.onDeleteResult}>
+                            {result.value}
+                        </li>
+                    )}
+                </ul>
             </div>
         );
     }
@@ -48,7 +60,8 @@ class Counter extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        counter: state.counter
+        counter: state.counter,
+        results: state.results
     };
 };
 
@@ -58,6 +71,8 @@ export default connect(
         onIncrementCount,
         onDecrementCount,
         onAddCount,
-        onSubtractCount
+        onSubtractCount,
+        onStoreResult,
+        onDeleteResult
     }
 )(Counter);

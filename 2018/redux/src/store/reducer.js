@@ -1,11 +1,19 @@
-import { INCREMENT, DECREMENT, SUBTRACT, ADD } from './actions';
+import {
+    INCREMENT,
+    DECREMENT,
+    SUBTRACT,
+    ADD,
+    STORE_RESULT,
+    DELETE_RESULT
+} from './actions';
 
 const initialState = {
-    counter: 0
+    counter: 0,
+    results: []
 };
 
 const reducer = (state = initialState, action) => {
-    console.log(action);
+    console.log(state, action);
     switch (action.type) {
         case INCREMENT:
             return {
@@ -27,6 +35,19 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 counter: state.counter + action.payload
             };
+        case STORE_RESULT:
+            return {
+                ...state,
+                results: state.results.concat({
+                    id: new Date(),
+                    value: state.counter
+                })
+            };
+        case DELETE_RESULT:
+            return {
+                ...state,
+                results: state.results.splice()
+            }
         default:
             return state;
     }
