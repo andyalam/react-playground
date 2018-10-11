@@ -18,23 +18,6 @@ class Counter extends Component {
         counter: 0
     }
 
-    counterChangedHandler = ( action, value ) => {
-        switch ( action ) {
-            case 'inc':
-                this.setState( ( prevState ) => { return { counter: prevState.counter + 1 } } )
-                break;
-            case 'dec':
-                this.setState( ( prevState ) => { return { counter: prevState.counter - 1 } } )
-                break;
-            case 'add':
-                this.setState( ( prevState ) => { return { counter: prevState.counter + value } } )
-                break;
-            case 'sub':
-                this.setState( ( prevState ) => { return { counter: prevState.counter - value } } )
-                break;
-        }
-    }
-
     render () {
         return (
             <div>
@@ -48,7 +31,7 @@ class Counter extends Component {
                 <ul>
                     {this.props.results.map((result) => <li
                             key={result.id}
-                            onClick={this.props.onDeleteResult}>
+                            onClick={() => this.props.onDeleteResult(result.id)}>
                             {result.value}
                         </li>
                     )}

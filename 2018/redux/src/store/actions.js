@@ -26,6 +26,9 @@ export function onStoreResult() {
     return { type: STORE_RESULT };
 }
 
-export function onDeleteResult() {
-    return { type: DELETE_RESULT };
+export function onDeleteResult(id) {
+    return {
+        type: DELETE_RESULT,
+        payload: { id }
+    };
 }

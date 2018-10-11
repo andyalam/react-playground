@@ -46,7 +46,8 @@ const reducer = (state = initialState, action) => {
         case DELETE_RESULT:
             return {
                 ...state,
-                results: state.results.splice()
+                results: state.results
+                    .filter(result => result.id !== action.payload.id)
             }
         default:
             return state;
