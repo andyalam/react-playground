@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
@@ -7,6 +8,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
+import { onAddIngredient, onRemoveIngredient } from '../../store/actions';
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -46,10 +48,10 @@ class BurgerBuilder extends Component {
 
     addIngredientHandler = (type) => {
         // count
-        const oldCount = this.state.ingredients[type];
+        const oldCount = this.props.ingredients[type];
         const updatedCount = oldCount + 1;
         const updatedIngredients = {
-            ...this.state.ingredients
+            ...this.props.ingredients
         };
         updatedIngredients[type] = updatedCount;
         // price
@@ -66,13 +68,13 @@ class BurgerBuilder extends Component {
 
     removeIngredientHandler = (type) => {
         // count
-        const oldCount = this.state.ingredients[type];
+        const oldCount = this.props.ingredients[type];
         if (oldCount <= 0) {
             return;
         }
         const updatedCount = oldCount - 1;
         const updatedIngredients = {
-            ...this.state.ingredients
+            ...this.props.ingredients
         };
         updatedIngredients[type] = updatedCount;
         // price
@@ -97,10 +99,10 @@ class BurgerBuilder extends Component {
 
     purchaseContinueHandler = () => {
         const queryParams = [];
-        for (let i in this.state.ingredients) {
+        for (let i in this.props.ingredients) {
             const qs = encodeURIComponent(i)
                      + '='
-                     + encodeURIComponent(this.state.ingredients[i])
+                     + encodeURIComponent(this.props.ingredients[i])
             queryParams.push(qs);
         }
         queryParams.push('price=' + this.state.totalPrice);
@@ -114,7 +116,7 @@ class BurgerBuilder extends Component {
 
     render() {
         const disabledInfo = {
-            ...this.state.ingredients
+            ...this.props.ingredients
         };
         for (let key in disabledInfo) {
             disabledInfo[key] = disabledInfo[key] <= 0;
@@ -125,22 +127,22 @@ class BurgerBuilder extends Component {
             ? <p>Ingredients can't be loaded!</p>
             : <Spinner />;
 
-        if (this.state.ingredients !== null) {
+        if (this.props.ingredients !== null) {
             burger = (
                 <Fragment>
-                    <Burger ingredients={this.state.ingredients} />
+                    <Burger ingredients={this.props.ingredients} />
                     <BuildControls
                         purchaseable={this.state.purchaseable}
                         price={this.state.totalPrice}
-                        ingredientAdded={this.addIngredientHandler}
-                        ingredientRemoved={this.removeIngredientHandler}
+                        ingredientAdded={this.props.onAddIngredient}
+                        ingredientRemoved={this.props.onRemoveIngredient}
                         disabled={disabledInfo}
                         ordered={this.purchaseHandler} />
                 </Fragment>
             );
 
             orderSummary = <OrderSummary
-                ingredients={this.state.ingredients}
+                ingredients={this.props.ingredients}
                 price={this.state.totalPrice}
                 purchaseCanceled={this.purchaseCancelHandler}
                 purchaseContinued={this.purchaseContinueHandler} />;
@@ -163,4 +165,16 @@ class BurgerBuilder extends Component {
     }
 }
 
-export default withErrorHandler(BurgerBuilder, axios);
+const mapStateToProps = state => {
+    return {
+        ingredients: state.ingredients
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    {
+        onAddIngredient,
+        onRemoveIngredient
+    }
+)(withErrorHandler(BurgerBuilder, axios));
