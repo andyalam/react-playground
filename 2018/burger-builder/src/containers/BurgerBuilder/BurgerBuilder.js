@@ -12,9 +12,6 @@ import { onAddIngredient, onRemoveIngredient } from '../../store/actions';
 
 class BurgerBuilder extends Component {
     state = {
-        ingredients: null,
-        totalPrice: 4,
-        purchaseable: false,
         purchasing: false,
         loading: false,
         error: false
@@ -36,7 +33,7 @@ class BurgerBuilder extends Component {
         const sum = Object.keys(ingredients)
             .map(key => ingredients[key])
             .reduce((sum, number) => sum + number, 0);
-        this.setState({ purchaseable: sum > 0 });
+        return sum > 0;
     }
 
     purchaseHandler = () => {
@@ -82,7 +79,7 @@ class BurgerBuilder extends Component {
                 <Fragment>
                     <Burger ingredients={this.props.ingredients} />
                     <BuildControls
-                        purchaseable={this.state.purchaseable}
+                        purchaseable={this.updatePurchaseState(this.props.ingredients)}
                         price={this.props.totalPrice}
                         ingredientAdded={this.props.onAddIngredient}
                         ingredientRemoved={this.props.onRemoveIngredient}
