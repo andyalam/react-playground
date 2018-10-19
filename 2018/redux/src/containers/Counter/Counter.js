@@ -11,7 +11,7 @@ import {
     onSubtractCount,
     onStoreResult,
     onDeleteResult
-} from '../../store/actions';
+} from '../../store/actions/actions';
 
 class Counter extends Component {
     state = {
