@@ -8,10 +8,14 @@ import {
     increment,
     decrement,
     add,
-    subtract,
+    subtract
+} from '../../store/actions/counter';
+
+import {
     storeResult,
     deleteResult
-} from '../../store/actions/actions';
+} from '../../store/actions/result';
+
 
 class Counter extends Component {
     state = {
