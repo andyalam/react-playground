@@ -8,13 +8,10 @@ import {
     increment,
     decrement,
     add,
-    subtract
-} from '../../store/actions/counter';
-
-import {
+    subtract,
     storeResult,
     deleteResult
-} from '../../store/actions/result';
+} from '../../store/actions';
 
 
 class Counter extends Component {
