@@ -6,19 +6,19 @@ export const SUBTRACT = 'SUBTRACT';
 export const STORE_RESULT = 'STORE_RESULT';
 export const DELETE_RESULT = 'DELETE_RESULT';
 
-export function onIncrementCount() {
+export function increment() {
     return { type: INCREMENT };
 }
 
-export function onDecrementCount() {
+export function decrement() {
     return { type: DECREMENT };
 }
 
-export function onAddCount(amount) {
+export function add(amount) {
     return { type: ADD, payload: amount };
 }
 
-export function onSubtractCount(amount) {
+export function subtract(amount) {
     return { type: SUBTRACT, payload: amount };
 }
 
@@ -26,7 +26,7 @@ export function onSubtractCount(amount) {
 const saveResult = (count) => {
     return { type: STORE_RESULT, payload: { count } };
 }
-export function onStoreResult(count) {
+export function storeResult(count) {
     return dispatch => {
         setTimeout(() => {
             dispatch(saveResult(count));
@@ -34,7 +34,7 @@ export function onStoreResult(count) {
     };
 }
 
-export function onDeleteResult(id) {
+export function deleteResult(id) {
     return {
         type: DELETE_RESULT,
         payload: { id }

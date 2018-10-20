@@ -5,12 +5,12 @@ import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
 
 import {
-    onIncrementCount,
-    onDecrementCount,
-    onAddCount,
-    onSubtractCount,
-    onStoreResult,
-    onDeleteResult
+    increment,
+    decrement,
+    add,
+    subtract,
+    storeResult,
+    deleteResult
 } from '../../store/actions/actions';
 
 class Counter extends Component {
@@ -22,16 +22,16 @@ class Counter extends Component {
         return (
             <div>
                 <CounterOutput value={this.props.counter} />
-                <CounterControl label="Increment" clicked={this.props.onIncrementCount} />
-                <CounterControl label="Decrement" clicked={this.props.onDecrementCount}  />
-                <CounterControl label="Add 5" clicked={() => this.props.onAddCount(5)}  />
-                <CounterControl label="Subtract 5" clicked={() => this.props.onSubtractCount(5)}  />
+                <CounterControl label="Increment" clicked={this.props.increment} />
+                <CounterControl label="Decrement" clicked={this.props.decrement}  />
+                <CounterControl label="Add 5" clicked={() => this.props.add(5)}  />
+                <CounterControl label="Subtract 5" clicked={() => this.props.subtract(5)}  />
                 <hr />
-                <button onClick={() => this.props.onStoreResult(this.props.counter)}>Store Result</button>
+                <button onClick={() => this.props.storeResult(this.props.counter)}>Store Result</button>
                 <ul>
                     {this.props.results.map((result) => <li
                             key={result.id}
-                            onClick={() => this.props.onDeleteResult(result.id)}>
+                            onClick={() => this.props.deleteResult(result.id)}>
                             {result.value}
                         </li>
                     )}
@@ -51,11 +51,11 @@ const mapStateToProps = (state) => {
 export default connect(
     mapStateToProps,
     {
-        onIncrementCount,
-        onDecrementCount,
-        onAddCount,
-        onSubtractCount,
-        onStoreResult,
-        onDeleteResult
+        increment,
+        decrement,
+        add,
+        subtract,
+        storeResult,
+        deleteResult
     }
 )(Counter);
