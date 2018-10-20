@@ -22,8 +22,16 @@ export function onSubtractCount(amount) {
     return { type: SUBTRACT, payload: amount };
 }
 
-export function onStoreResult(count) {
+
+const saveResult = (count) => {
     return { type: STORE_RESULT, payload: { count } };
+}
+export function onStoreResult(count) {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(saveResult(count));
+        }, 5000);
+    };
 }
 
 export function onDeleteResult(id) {
