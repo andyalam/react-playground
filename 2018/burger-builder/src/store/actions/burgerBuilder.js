@@ -1,9 +1,8 @@
-export const ADD_INGREDIENT = 'ADD_INGREDIENT';
-export const REMOVE_INGREDIENT = 'REMOVE_INGREDIENT';
+import * as actionTypes from './actionTypes';
 
 export const onAddIngredient = (ingredientName) => {
     return {
-        type: ADD_INGREDIENT,
+        type: actionTypes.ADD_INGREDIENT,
         payload: {
             ingredientName,
         }
@@ -11,7 +10,7 @@ export const onAddIngredient = (ingredientName) => {
 };
 export const onRemoveIngredient = (ingredientName) => {
     return {
-        type: REMOVE_INGREDIENT,
+        type: actionTypes.REMOVE_INGREDIENT,
         payload: {
             ingredientName,
         }
