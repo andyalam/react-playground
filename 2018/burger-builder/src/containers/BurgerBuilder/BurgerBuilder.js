@@ -8,25 +8,20 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
-import { onAddIngredient, onRemoveIngredient } from '../../store/actions';
+import {
+    onAddIngredient,
+    onRemoveIngredient,
+    initIngredients
+} from '../../store/actions';
 
 class BurgerBuilder extends Component {
     state = {
         purchasing: false,
-        loading: false,
-        error: false
     }
 
     componentDidMount() {
         // TODO: revert later
-        // axios
-        //     .get('/ingredients.json')
-        //     .then(response => {
-        //         this.setState({ ingredients: response.data });
-        //     })
-        //     .catch(error => {
-        //         this.setState({ error: true });
-        //     });
+        this.props.initIngredients();
     }
 
     updatePurchaseState (ingredients) {
@@ -82,10 +77,6 @@ class BurgerBuilder extends Component {
                 purchaseContinued={this.purchaseContinueHandler} />;
         }
 
-        if (this.state.loading) {
-            orderSummary = <Spinner />;
-        }
-
         return (
             <Fragment>
                 <Modal
@@ -102,7 +93,8 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
     return {
         ingredients: state.ingredients,
-        totalPrice: state.totalPrice
+        totalPrice: state.totalPrice,
+        error: state.error
     };
 };
 
@@ -110,6 +102,7 @@ export default connect(
     mapStateToProps,
     {
         onAddIngredient,
-        onRemoveIngredient
+        onRemoveIngredient,
+        initIngredients
     }
 )(withErrorHandler(BurgerBuilder, axios));
