@@ -33,8 +33,11 @@ const fetchIngredientsFailed = () => {
 export const initIngredients = () => {
     return dispatch => {
         axios
-            .get('/ingredients.json')
+            .get('/ingrediasdents.json')
             .then(response => {
+                if (response.data === null) {
+                    throw new Error('Empty response');
+                }
                 dispatch(setIngredients(response.data));
             })
             .catch(error => {
