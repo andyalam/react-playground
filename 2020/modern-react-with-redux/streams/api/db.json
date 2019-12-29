@@ -1,3 +1,25 @@
 {
-  "streams": []
+  "streams": [
+    {
+      "title": "test",
+      "description": "descriptionasdasdas",
+      "id": 1
+    },
+    {
+      "title": "testasdasd",
+      "description": "descriptionasdasdas",
+      "id": 2
+    },
+    {
+      "title": "ttitlere111",
+      "description": "desciptionasdasdas",
+      "id": 3
+    },
+    {
+      "title": "newnew111",
+      "description": "newnewdescreiption",
+      "userId": "101330645932375288266",
+      "id": 5
+    }
+  ]
 }
